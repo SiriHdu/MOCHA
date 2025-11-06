@@ -5,12 +5,12 @@
 
 ![Demo](assets/avoidance_event.gif)
 
+*Real-time multi-robot collision avoidance using MOCHA trajectory optimization*
+</div>
+
 <video src="https://github.com/SiriHdu/MOCHA/raw/main/assets/multi_demo.mp4" controls width="100%">
   <p>Your browser doesn't support HTML5 video. <a href="assets/multi_demo.mp4">Download the video</a> instead.</p>
 </video>
-
-*Real-time multi-robot collision avoidance using MOCHA trajectory optimization*
-</div>
 
 ## 📖 Overview
 
