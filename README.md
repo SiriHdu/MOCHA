@@ -9,10 +9,7 @@
 </div>
 
 ## Demo
-<video width="800" controls>
-  <source src="assets/multi_demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Watch Demo]https://github.com/SiriHdu/MOCHA/assets/multi_demo.mp4
 
 ## 📖 Overview
 
