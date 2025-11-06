@@ -8,9 +8,11 @@
 <td><img src="assets/demo_multi.gif" alt="Multi-robot Demo" width="400"/></td>
 <td><img src="assets/avoidance_event.gif" alt="Avoidance Event" width="400"/></td>
 </tr>
+<tr>
+<td align="center">*Multi-robot collision avoidance using MOCHA in real-world*</td>
+<td align="center">*Real-time multi-robot collision avoidance using MOCHA*</td>
+</tr>
 </table>
-
-*Multi-robot collision avoidance using MOCHA in real-world*
 
 </div>
 
