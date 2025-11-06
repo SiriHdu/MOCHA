@@ -16,74 +16,34 @@
 
 </div>
 
-<video src="https://github.com/SiriHdu/MOCHA/raw/main/assets/multi_demo.mp4" controls width="100%">
-  <p>Your browser doesn't support HTML5 video. <a href="assets/multi_demo.mp4">Download the video</a> instead.</p>
-</video>
-
 ## 📖 Overview
 
-GHOST Planner is a ROS2-based global trajectory planning system designed for **multi-agent** environments. It combines:
+MOCHA is a trajectory planning framework for multi-agent systems that addresses the computational challenges of high-dimensional optimization and local minima in complex environments. Inspired by the motion camouflage phenomenon in nature, MOCHA introduces a novel reparameterization technique that transforms high-dimensional waypoint optimization into a sequence of one-dimensional scalar parameters, significantly reducing decision dimensionality and accelerating computation speed.
 
-- **MOCHA (Motion Camouflage-based Homotopy Aware) Optimization**: Polynomial trajectory optimization using L-BFGS solver
-- **CGAL Homotopy Path Generation**: Apollonius graph-based topologically distinct path planning
-- **Spatiotemporal Collision Avoidance**: Real-time multi-robot coordination
+The framework integrates **homotopy-aware path planning** using H-signature to distinguish topologically distinct path classes, effectively mitigating local minima through multi-candidate parallel optimization.
 
 ### Key Features
-
-✅ **Topologically Diverse Paths** - Generates multiple homotopy classes for robust planning  
-✅ **Smooth Trajectories** - 5th-order polynomial optimization with continuous acceleration  
-✅ **Multi-Agent Coordination** - Distributed planning with collision-free guarantees  
-✅ **Real-Time Performance** - Parallel optimization, 50-500ms planning time  
-✅ **ROS2 Action Interface** - Easy integration with navigation stacks  
-
-## 🎯 Use Cases
-
-- Multi-robot warehouse logistics
-- Drone swarm navigation
-- Autonomous vehicle coordination
-- Research in motion planning algorithms
-
-## 🔬 Methodology
-
-### 1. Homotopy Path Generation (CGAL)
-- Constructs Apollonius graph from circular obstacles
-- Extracts Voronoi skeleton for collision-free space
-- Generates topologically distinct candidate paths using Dijkstra search
-
-### 2. MOCHA Trajectory Optimization
-- **Representation**: Piecewise polynomial trajectories (5th order Bezier curves)
-- **Optimization**: L-BFGS minimizes weighted objective:
-  ```
-  J = w₁·Energy + w₂·Time + w₃·Obstacles + w₄·MultiAgent
-  ```
-- **Constraints**: Velocity/acceleration limits, continuity, collision avoidance
-
-### 3. Multi-Agent Coordination
-- Robots share committed trajectories via ROS2 topics
-- Spatiotemporal collision checking during optimization
-- Idle robots treated as dynamic obstacles
+✅ **Motion Camouflage Reparameterization** - Reduces trajectory dimensionality for faster optimization  
+✅ **Homotopy-Aware Planning** - Multi-topology path search with H-signature classification  
+✅ **Real-Time Performance** - Millisecond-level planning speed for rapid replanning  
+✅ **Multi-Agent Coordination** - Distributed asynchronous planning with collision-free guarantees   
 
 ## 🚀 Deployment
 
 ### Prerequisites
 
-**System Requirements:**
-- Ubuntu 22.04 LTS
-- ROS2 Humble Hawksbill
+Ensure you have **ROS2** installed on your system. Recommended setup:
+- **Ubuntu 22.04 LTS**
+- **ROS2 Humble**
 
-**Dependencies:**
+For ROS2 installation, refer to the [official ROS2 documentation](https://docs.ros.org/en/humble/Installation.html).
+
+**Additional Dependencies:**
+
+Install required libraries:
 ```bash
-sudo apt update
-sudo apt install -y \
-  ros-humble-desktop \
-  libcgal-dev \
-  libeigen3-dev \
-  build-essential \
-  cmake \
-  python3-colcon-common-extensions
+sudo apt update && sudo apt install -y libcgal-dev libeigen3-dev
 ```
-
-See `requirements.txt` for complete dependency list.
 
 ### Installation
 
@@ -93,7 +53,7 @@ mkdir -p ~/ghost_ws/src
 cd ~/ghost_ws/src
 
 # 2. Clone repository
-git clone https://github.com/yourusername/ghost.git
+git clone https://github.com/SiriHdu/MOCHA.git
 
 # 3. Build
 cd ~/ghost_ws
@@ -110,13 +70,6 @@ source install/setup.bash
 ```bash
 ros2 launch ghost_planner verification_global_system.launch.py
 ```
-
-This starts:
-- 3 robot planners (`robot_1`, `robot_2`, `robot_3`)
-- Random obstacle generator
-- RViz visualization
-- Trajectory tracking nodes
-
 **Set planning goals:**
 
 In RViz, use the **"2D Goal Pose"** tool to click on the map and set goals for each robot.
@@ -141,35 +94,6 @@ mocha:
   peer_safety_margin: 0.4 # Safety distance between robots (m)
 ```
 
-## 📊 Performance
-
-**Benchmark** (Intel i7 @ 3.5GHz):
-- Single robot: **50-150 ms**
-- 3 homotopy paths: **150-400 ms**
-- Multi-robot (3 agents): **200-500 ms**
-
-**Optimization enabled:** `-O3` compiler flag (Release mode)
-
-## 🗂️ Project Structure
-
-```
-ghost/
-├── src/GHOST Planner/
-│   ├── src/                    # C++ source files
-│   │   ├── global_planner_action_server.cpp
-│   │   ├── mocha_optimizer.cpp
-│   │   ├── cgal_homotopy_planner.cpp
-│   │   └── verifation_global_planner.cpp
-│   ├── include/ghost planner/  # Header files
-│   ├── config/                 # YAML configuration
-│   ├── launch/                 # Launch files
-│   ├── rviz/                   # RViz configs
-│   └── action/                 # ROS2 action definitions
-├── assets/                     # Media files (GIFs, videos)
-├── README.md
-└── requirements.txt
-```
-
 ## 📡 ROS2 Interface
 
 ### Topics
@@ -190,25 +114,6 @@ ghost/
 **Goal:** Target pose (geometry_msgs/PoseStamped)  
 **Result:** Optimized trajectory with polynomial coefficients  
 **Feedback:** Planning status and progress  
-
-## 🛠️ Troubleshooting
-
-**Build fails:**
-- Ensure all dependencies installed: `rosdep install --from-paths src --ignore-src -r -y`
-
-**No visualization in RViz:**
-- Check topic publishing: `ros2 topic list`
-- Verify RViz config loaded from launch file
-
-**Planning fails:**
-- Verify start/goal are collision-free
-- Check obstacle topic: `ros2 topic echo /obstacles`
-- Increase safety margins in config
-
-**CGAL warning (safe to ignore):**
-```
-CGAL_DATA_DIR cannot be deduced
-```
 
 ## 📜 License
 

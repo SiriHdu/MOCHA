@@ -1,0 +1,40 @@
+/**/global_planner:
+  ros__parameters:
+    global_frame: "map"
+    robot_base_frame: "base_link"
+
+    # MOCHA optimization parameters
+    mocha.v_max: 3.0
+    mocha.a_max: 2.0
+    mocha.drone_radius: 0.3
+    mocha.w_energy: 1.0
+    mocha.w_time: 1.0
+    mocha.w_feasibility: 100.0
+    mocha.w_obstacle: 100.0
+    mocha.kappa: 30
+    mocha.w_peer: 1000.0
+    mocha.peer_safety_margin: 0.3
+
+    # CGAL generation parameters
+    cgal.max_paths: 6
+    cgal.safety_margin: 0.1
+    cgal.enable_bezier_smoothing: false
+    cgal.bezier_samples_per_segment: 8
+    cgal.smoothing_collision_step: 0.05
+    cgal.bbox_expansion_margin: 5.0
+    cgal.show_skeleton: true
+
+    # Trajectory processing / visualization
+    trajectory.resample_step_m: 4.0
+    trajectory.viz_sample_dt: 0.02
+    trajectory.show_initial_waypoints: false
+    trajectory.show_cgal_raw: false
+
+    # Reference selection
+    ref.distance_ratio: 0.5
+    ref.weight_decay_distance: 100.0
+    ref.use_obstacle_side_selection: true
+    ref.manual_side: "left"
+
+
+

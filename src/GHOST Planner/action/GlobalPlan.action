@@ -1,0 +1,14 @@
+# Goal: target goal pose in global frame
+geometry_msgs/PoseStamped goal
+---
+# Result: success flag, message, full trajectory and best path
+bool success
+string message
+ghost_planner/Trajectory trajectory
+nav_msgs/Path best_path
+---
+# Feedback: simple status/progress updates
+string status
+float32 progress
+
+
