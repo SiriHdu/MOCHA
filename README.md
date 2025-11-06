@@ -14,6 +14,10 @@
 
 </div>
 
+<video src="https://github.com/SiriHdu/MOCHA/raw/main/assets/multi_demo.mp4" controls width="100%">
+  <p>Your browser doesn't support HTML5 video. <a href="assets/multi_demo.mp4">Download the video</a> instead.</p>
+</video>
+
 ## 📖 Overview
 
 GHOST Planner is a ROS2-based global trajectory planning system designed for **multi-agent** environments. It combines:
