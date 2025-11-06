@@ -3,11 +3,14 @@
 
 <div align="center">
 
-![Demo](assets/avoidance_event.gif)
+<table>
+<tr>
+<td><img src="assets/demo_multi.gif" alt="Multi-robot Demo" width="400"/></td>
+<td><img src="assets/avoidance_event.gif" alt="Avoidance Event" width="400"/></td>
+</tr>
+</table>
 
-*Real-time multi-robot collision avoidance using MOCHA trajectory optimization*
-
-https://github.com/SiriHdu/MOCHA/assets/multi_demo.mp4
+*Multi-robot collision avoidance using MOCHA in real-world*
 
 </div>
 
